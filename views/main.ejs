@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
+
+    <title>graph</title>
+</head>
+
+<body class="container-fulid">
+    <header>
+
+        <div class="row">
+            <form action="/logout" method="get" class="offset-8 col-3 mt-4">
+                <div class="offset-9 offset-sm-2 col-2 logout">
+                    <button type="submit" class="btn btn-danger">logout</button>
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="graph col-xl-6 col-lg-6 col-md-8 col-sm-10  offset-md-2 offset-lg-1">
+                <canvas id="myLineChart" class=""></canvas>
+                <!-- <button id="before" class="btn btn-success">←前の月</button>
+                <button id="after" class="btn btn-success">次の月→</button> -->
+                <div class="row">
+                    <span class="sample1 col-3">用途１:<span id="use1" class="offset-2"></span></span>
+                    <span class="sample2 col-3">用途2:<span id="use2" class="offset-2"></span></span>
+                    <span class="sample3 col-3">用途3:<span id="use3" class="offset-2"></span></span>
+                </div>
+            </div>
+
+            <div class="input_area col-xl-4 col-lg-4 col-md-8  col-xs-10  offset-md-2 offset-lg-0">
+                <div class="new_input">
+                    <form action="/main" method="post">
+                        <h2>新規入力</h2>
+                        <div class="flame col-12">
+                            <div class="form-row">
+                                <div class="form-group col-sm-4">
+                                    <label for="text4a">年</label>
+                                    <select class="form-control" id="sYear" name="year">
+                                        <option value="">年</option selected>
+                                        <option value="2021">2021</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="text4a">月</label>
+                                    <select class="form-control" id="sMonth" name="month">
+                                        <option value="">月</option selected>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="text4a">日</label>
+                                    <select class="form-control" id="sDay" name="day">
+                                        <option value="">日</option selected>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p id="dateErr" class="row col-12 error"></p>
+                            <div class="row">
+                                <div class="form-group col-sm-8">
+                                    <label for="text4a">金額(円)</label>
+                                    <input id="Money" type="number" class="col-12 form-control" name="input_money"
+                                        placeholder="円">
+                                    <p id="moneyErr" class="row col-12 error"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="text4a">用途</label>
+                                    <select id="use" class="form-control" onchange="changeItem(this)" name="use">
+                                        <option value="0">用途</option selected>
+                                        <option class="a" value="1">sample1</option>
+                                        <option class="b" value="2">sample2</option>
+                                        <option class="c" value="3">sample3</option>
+                                    </select>
+                                </div>
+                                <p id="useErr" class="row col-10 ml-1 error"></p>
+                            </div>
+                            <input type="submit" id="newCreate" class="btn btn-info offset-10" value="送信"></input>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="recently_use">
+                    <h2>最近の使用</h2>
+                    <div class="flame">
+                        <% for (const item of list) { %>
+                            <div class="col-10 offset-1 sample<%= item.used %>">
+                                <span>
+                                    <%= item.year %>年<%= item.month %>月<%= item.day %>日
+                                </span>
+                                <span>　¥<%= item.money %></span>
+                                <span>　sample<%= item.used %></span>
+                            </div>
+                            <% } %>
+                                <!-- template -->
+                                <!-- <div class="col-10 offset-1 sample">
+                            <span>2020年1月1日</span>
+                            <span>　¥999,999,999</span>
+                            <span>　sample1</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+    <script>
+        var list = []
+        var label = []
+        var moneys = []
+        var used1 = []
+        var used2 = []
+        var used3 = []
+        "<%for(i=0; i<delDuplicate.length;i++){ %>"
+        var date = "<%=delDuplicate[i].date%>";
+        var userID = "<%=delDuplicate[i].userID%>";
+        var used = "<%=delDuplicate[i].used%>";
+        var money = "<%=delDuplicate[i].money%>";
+        var year = "<%=delDuplicate[i].year%>";
+        var month = "<%=delDuplicate[i].month%>";
+        var day = "<%=delDuplicate[i].day%>";
+        list.push({ date: date, used: used, money: money, year: year, month: month, day: day });
+        var dupArray = (month.toString() + "月" + day.toString() + "日");
+        label.push(dupArray);
+        moneys.push(money);
+        "<%}%>"
+        console.log(label)
+
+        const labels = label.filter(function (val, idx, arr) {
+          
+            return arr.indexOf(val) === idx
+        })
+
+        console.log("list", list)
+        console.log("labels", labels)
+        console.log("moneys", moneys)
+        for (const i of list) {
+            if (i.used === "1") {
+                used1.push(i.money)
+            }
+            if (i.used === "2") {
+                used2.push(i.money)
+            }
+            if (i.used === "3") {
+                used3.push(i.money)
+            }
+        }
+        const total1 = addMoneys(used1)
+        const total2 = addMoneys(used2)
+        const total3 = addMoneys(used3)
+        const as = document.getElementById('use1').innerHTML = "¥"+total1;
+        const ad = document.getElementById('use2').innerHTML = "¥"+total2;
+        const af = document.getElementById('use3').innerHTML = "¥"+total3;
+
+        function addMoneys(used){
+            let totalMoney = 0;
+            for(const i of used){
+                let num = parseFloat(i)
+                totalMoney +=num;
+                console.log(typeof num)
+            }
+            console.log(totalMoney)
+            return totalMoney;
+        }
+        const ctx = document.getElementById("myLineChart");
+        ctx.height = 250;
+        const myLineChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: "sample1(円)",
+                        data: used1,
+                        borderColor: "rgb(255, 138, 92)",
+                        backgroundColor: "rgba(0,0,0,0)",
+                        lineTension: 0,
+                        fill: false,
+                        borderWidth: 3,
+                    },
+                    {
+                        label: "sample2(円)",
+                        data: used2,
+                        borderColor: "#F5587B",
+                        backgroundColor: "rgba(0,0,0,0)",
+
+                        lineTension: 0,
+                        fill: false,
+                        borderWidth: 3,
+                    }, {
+                        label: "sample3(円)",
+                        data: used3,
+                        borderColor: "#E41749",
+                        backgroundColor: "rgba(0,0,0,0)",
+                        lineTension: 0,
+                        fill: false,
+                        borderWidth: 3,
+                    },
+                ],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "使用金額",
+                },
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                suggestedMax: 15000,
+                                suggestedMin: 0,
+                                stepSize: 1000,
+                                callback: function (value, index, values) {
+                                    return value + "円";
+                                },
+                            },
+                        },
+                    ],
+                },
+            },
+        });
+
+    </script>
+
+</body>
+
+</html>

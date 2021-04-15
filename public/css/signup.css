@@ -1,0 +1,20 @@
+body{
+    border:solid 1px #707070;
+    margin: 50px 0 50px 0;
+    min-width: 300px;
+}
+.logo{
+    height: 200px;
+}
+.form-label{
+    font-size: 1.2rem;
+    font-family: 'Hiragino Kaku Gothic ProN';
+    color: #707070;
+}
+.btn{
+    border-radius: 30px;
+}
+#error{
+    color: #fc6a6a;
+    margin: 0 0 0 25%;
+}
